@@ -35,7 +35,7 @@ class SUtil
 		{
 			if (VERSION.SDK_INT > 23 || VERSION.SDK_INT == 23)
 			{
-				Permissions.requestPermissions([Permissions.WRITE_EXTERNAL_STORAGE, PermissionsList.READ_EXTERNAL_STORAGE]);
+				Permissions.requestPermissions([Permissions.WRITE_EXTERNAL_STORAGE, Permissions.READ_EXTERNAL_STORAGE]);
 
 				/**
 				 * Basically for now i can't force the app to stop while its requesting a android permission, so this makes the app to stop while its requesting the specific permission
@@ -153,7 +153,7 @@ class SUtil
 					errMsg + "\n");
 			}
 			catch (e:Dynamic)
-				SUtil.applicationAlert("Error!\nClouldn't save the crash dump because:\n" + e, 2);
+				Application.current.window.alert("Error!\nClouldn't save the crash dump because:\n" + e, 2);
 
 			System.exit(1);
 		});
@@ -168,10 +168,10 @@ class SUtil
 				FileSystem.createDirectory(SUtil.getPath() + 'saves');
 
 			File.saveContent(SUtil.getPath() + 'saves/' + fileName + fileExtension, fileData);
-			SUtil.applicationAlert("File Saved Successfully!", 2);
+			Application.current.window.alert("File Saved Successfully!", 2);
 		}
 		catch (e:Dynamic)
-			SUtil.applicationAlert("Error!\nClouldn't save the file because:\n" + e, 2);
+			Application.current.window.alert("Error!\nClouldn't save the file because:\n" + e, 2);
 	}
 
 	public static function copyContent(copyPath:String, savePath:String)
@@ -182,7 +182,7 @@ class SUtil
 				File.saveBytes(savePath, OpenFlAssets.getBytes(copyPath));
 		}
 		catch (e:Dynamic)
-			SUtil.applicationAlert("Error!\nClouldn't copy the file because:\n" + e, 2);
+			Application.current.window.alert("Error!\nClouldn't copy the file because:\n" + e, 2);
 	}
 	#end
 }
